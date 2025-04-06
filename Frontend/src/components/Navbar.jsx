@@ -78,7 +78,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="http://localhost:5173/">
+            <a className="navbar-brand" href="/">
               ECom
             </a>
             <button

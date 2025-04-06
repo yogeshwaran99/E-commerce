@@ -5,4 +5,6 @@ VALUES
 ('MacBook Pro', 'Apple MacBook Pro 16-inch', 'Apple', 2399.99, 'laptop', '2023-03-01', true, 20),
 ('Dell XPS 13', 'Dell XPS 13 Ultrabook', 'Dell', 1299.99, 'laptop', '2023-04-01', true, 25),
 ('Levi Jeans', 'Classic Levi Jeans', 'Levi', 59.99, 'fashion', '2023-05-01', true, 100),
+('Sony Bravia', 'Sony Smart TV', 'Sony', 1199.99, 'Electronics', '2024-06-01', true, 20),
+('Hesh® Headphone', 'Hesh® ANC', 'Skullcandy', 199.99, 'Electronics', '2024-26-01', true, 10),
 ('Lego Set', 'Lego Star Wars Set', 'Lego', 79.99, 'toy', '2023-06-01', true, 40);
