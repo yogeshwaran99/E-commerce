@@ -8,7 +8,7 @@ const Home = ({ selectedCategory }) => {
   const { data, isError, addToCart, refreshData } = useContext(AppContext);
   const [products, setProducts] = useState([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
-
+  
   useEffect(() => {
     if (!isDataFetched) {
       refreshData();
@@ -45,9 +45,14 @@ const Home = ({ selectedCategory }) => {
     }
   }, [data]);
 
-  const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;
+  const filteredProducts = React.useMemo(() => {
+    if (!selectedCategory) return products;
+    return products.filter(
+      (product) =>
+        product.category?.toLowerCase() === selectedCategory.toLowerCase()
+    );
+  }, [products, selectedCategory]);
+  
 
   if (isError) {
     return (
@@ -81,7 +86,7 @@ const Home = ({ selectedCategory }) => {
           </h2>
         ) : (
           filteredProducts.map((product) => {
-            const { id, brand, name, price, productAvailable, imageUrl } =
+            const { id, brand, name, price, category, productAvailable, imageUrl } =
               product;
             const cardStyle = {
               width: "18rem",
@@ -94,7 +99,7 @@ const Home = ({ selectedCategory }) => {
                 className="card mb-3"
                 style={{
                   width: "250px",
-                  height: "360px",
+                  height: "400px",
                   boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                   borderRadius: "10px",
                   overflow: "hidden", 
@@ -145,6 +150,12 @@ const Home = ({ selectedCategory }) => {
                       >
                         {"~ " + brand}
                       </i>
+                      <p
+                        className="card-category"
+                        style={{fontSize: "1rem" }}
+                      >
+                        {category}
+                      </p>
                     </div>
                     <hr className="hr-line" style={{ margin: "10px 0" }} />
                     <div className="home-cart-price">

@@ -33,7 +33,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       setShowSearchResults(true)
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/products/search?keyword=${value}`
+        `http://localhost:8080/api/product/search?keyword=${value}`
       );
       setSearchResults(response.data);
       setNoResults(response.data.length === 0);
@@ -47,6 +47,9 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       setNoResults(false);
     }
   };
+
+
+  
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -65,9 +68,9 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
   const categories = [
     "Laptop",
     "Headphone",
-    "Mobile",
+    "Phone",
     "Electronics",
-    "Toys",
+    "Toy",
     "Fashion",
   ];
   return (
@@ -75,7 +78,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" >
+            <a className="navbar-brand" href="http://localhost:5173/">
               ECom
             </a>
             <button
@@ -104,7 +107,30 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                     Add Product
                   </a>
                 </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="/"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Categories
+                  </a>
 
+                  <ul className="dropdown-menu">
+                    {categories.map((category) => (
+                      <li key={category}>
+                        <button
+                          className="dropdown-item"
+                          onClick={() => handleCategorySelect(category)}
+                        >
+                          {category}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
                 <li className="nav-item"></li>
               </ul>
               <button className="theme-btn" onClick={() => toggleTheme()}>

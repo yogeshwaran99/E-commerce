@@ -99,7 +99,7 @@ const UpdateProduct = () => {
 
   return (
     <div className="update-product-container" >
-      <div className="center-container"style={{marginTop:"7rem"}}>
+      <div className="center-container"style={{marginTop:"10rem"}}>
         <h1>Update Product</h1>
         <form className="row g-3 pt-1" onSubmit={handleSubmit}>
           <div className="col-md-6">
@@ -171,9 +171,9 @@ const UpdateProduct = () => {
               <option value="">Select category</option>
               <option value="laptop">Laptop</option>
               <option value="headphone">Headphone</option>
-              <option value="mobile">Mobile</option>
+              <option value="phone">phone</option>
               <option value="electronics">Electronics</option>
-              <option value="toys">Toys</option>
+              <option value="toy">Toy</option>
               <option value="fashion">Fashion</option>
             </select>
           </div>

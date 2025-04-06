@@ -123,9 +123,9 @@ const AddProduct = () => {
             <option value="">Select category</option>
             <option value="Laptop">Laptop</option>
             <option value="Headphone">Headphone</option>
-            <option value="Mobile">Mobile</option>
+            <option value="Phone">Phone</option>
             <option value="Electronics">Electronics</option>
-            <option value="Toys">Toys</option>
+            <option value="Toy">Toy</option>
             <option value="Fashion">Fashion</option>
           </select>
         </div>
@@ -156,9 +156,8 @@ const AddProduct = () => {
             onChange={handleInputChange}
             id="releaseDate"
           />
-        </div>
-         <input className='image-control' type="file" name='file' onChange={(e) => setProduct({...product, image: e.target.files[0]})} />
-    <button className="btn btn-primary" >Add Photo</button>  
+        </div>  
+
         <div className="col-md-4">
           <label className="form-label">
             <h6>Image</h6>
@@ -169,6 +168,7 @@ const AddProduct = () => {
             onChange={handleImageChange}
           />
         </div>
+        <button className="btn btn-primary" >Add Photo</button>  
         <div className="col-12">
           <div className="form-check">
             <input

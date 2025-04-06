@@ -78,7 +78,7 @@ const Product = () => {
         <div className="right-column" style={{ width: "50%" }}>
           <div className="product-description">
             <div style={{display:'flex',justifyContent:'space-between' }}>
-            <span style={{ fontSize: "1.2rem", fontWeight: 'lighter' }}>
+            <span style={{ fontSize: "1.2rem", fontWeight: 'bold' }}>
               {product.category}
             </span>
             <p className="release-date" style={{ marginBottom: "2rem" }}>
