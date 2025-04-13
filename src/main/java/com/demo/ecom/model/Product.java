@@ -1,6 +1,5 @@
 package com.demo.ecom.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +29,8 @@ public class Product {
     private String imageType;
     @Lob
     private byte[] imageData;
-
     public Product(int id) {
         this.id = id;
     }
+
 }

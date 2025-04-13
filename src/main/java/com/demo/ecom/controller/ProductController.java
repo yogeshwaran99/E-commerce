@@ -5,6 +5,7 @@ import com.demo.ecom.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,7 +45,7 @@ public class ProductController {
         }
     }
 
-
+    @PreAuthorize("hasRole('VENDOR')")
     @PostMapping("/product")
     public ResponseEntity<?> addProduct(@RequestPart Product product, @RequestPart MultipartFile imageFile) {
         Product savedProduct = null;
@@ -57,7 +58,7 @@ public class ProductController {
 
     }
 
-
+    @PreAuthorize("hasRole('VENDOR')")
     @PutMapping("/product/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product, @RequestPart MultipartFile imageFile) {
         Product updatedProduct = null;
@@ -69,7 +70,7 @@ public class ProductController {
         }
     }
 
-
+    @PreAuthorize("hasRole('VENDOR')")
     @DeleteMapping("/product/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {
         Product product = productService.getProductById(id);

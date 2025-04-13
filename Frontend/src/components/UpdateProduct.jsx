@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UpdateProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); 
   const [product, setProduct] = useState({});
   const [image, setImage] = useState();
   const [updateProduct, setUpdateProduct] = useState({
@@ -26,12 +27,12 @@ const UpdateProduct = () => {
         );
 
         setProduct(response.data);
-      
+
         const responseImage = await axios.get(
           `http://localhost:8080/api/product/${id}/image`,
           { responseType: "blob" }
         );
-       const imageFile = await converUrlToFile(responseImage.data,response.data.imageName)
+        const imageFile = await convertUrlToFile(responseImage.data, response.data.imageName);
         setImage(imageFile);     
         setUpdateProduct(response.data);
       } catch (error) {
@@ -42,47 +43,50 @@ const UpdateProduct = () => {
     fetchProduct();
   }, [id]);
 
-  useEffect(() => {
-    console.log("image Updated", image);
-  }, [image]);
-
-
-
-  const converUrlToFile = async(blobData, fileName) => {
+  const convertUrlToFile = async (blobData, fileName) => {
     const file = new File([blobData], fileName, { type: blobData.type });
     return file;
-  }
- 
-  const handleSubmit = async(e) => {
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("images", image)
-    console.log("productsdfsfsf", updateProduct)
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("You need to log in first!");
+      return;
+    }
+
     const updatedProduct = new FormData();
     updatedProduct.append("imageFile", image);
     updatedProduct.append(
       "product",
       new Blob([JSON.stringify(updateProduct)], { type: "application/json" })
     );
-  
 
-  console.log("formData : ", updatedProduct)
-    axios
-      .put(`http://localhost:8080/api/product/${id}`, updatedProduct, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("Product updated successfully:", updatedProduct);
-        alert("Product updated successfully!");
-      })
-      .catch((error) => {
-        console.error("Error updating product:", error);
-        console.log("product unsuccessfull update",updateProduct)
-        alert("Failed to update product. Please try again.");
-      });
+    try {
+
+      const response = await axios.put(
+        `http://localhost:8080/api/product/${id}`,
+        updatedProduct,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Product updated successfully:", response.data);
+      alert("Product updated successfully!");
+      navigate("/products"); 
+    } catch (error) {
+      console.error("Error updating product:", error);
+      alert("Failed to update product. Please try again.");
+    }
   };
- 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,15 +95,15 @@ const UpdateProduct = () => {
       [name]: value,
     });
   };
-  
+
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
-  
 
   return (
-    <div className="update-product-container" >
-      <div className="center-container"style={{marginTop:"10rem"}}>
+    <div className="update-product-container">
+      <div className="center-container" style={{ marginTop: "10rem" }}>
         <h1>Update Product</h1>
         <form className="row g-3 pt-1" onSubmit={handleSubmit}>
           <div className="col-md-6">
@@ -171,7 +175,7 @@ const UpdateProduct = () => {
               <option value="">Select category</option>
               <option value="laptop">Laptop</option>
               <option value="headphone">Headphone</option>
-              <option value="phone">phone</option>
+              <option value="phone">Phone</option>
               <option value="electronics">Electronics</option>
               <option value="toy">Toy</option>
               <option value="fashion">Fashion</option>
@@ -216,8 +220,8 @@ const UpdateProduct = () => {
               id="imageUrl"
             />
           </div>
-          <div className="col-12">
-            <div className="form-check">
+          <div className="col-md-12">
+            <label className="form-check-label">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -228,8 +232,8 @@ const UpdateProduct = () => {
                   setUpdateProduct({ ...updateProduct, productAvailable: e.target.checked })
                 }
               />
-              <label className="form-check-label">Product Available</label>
-            </div>
+              Product Available
+            </label>
           </div>
 
           <div className="col-12">
