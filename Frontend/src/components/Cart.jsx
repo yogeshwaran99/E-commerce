@@ -5,7 +5,7 @@ import CheckoutPopup from "./CheckoutPopup";
 import { Button } from 'react-bootstrap';
 
 const Cart = () => {
-  const { cart, removeFromCart , clearCart } = useContext(AppContext);
+  const { cart, removeFromCart, clearCart } = useContext(AppContext);
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartImage, setCartImage] = useState([]);
@@ -36,7 +36,7 @@ const Cart = () => {
             }
           })
         );
-        console.log("cart",cart)
+        console.log("cart", cart)
         setCartItems(cartItemsWithImages);
       } catch (error) {
         console.error("Error fetching product data:", error);
@@ -74,7 +74,7 @@ const Cart = () => {
     });
     setCartItems(newCartItems);
   };
-  
+
 
   const handleDecreaseQuantity = (itemId) => {
     const newCartItems = cartItems.map((item) =>
@@ -96,17 +96,17 @@ const Cart = () => {
       for (const item of cartItems) {
         const { imageUrl, imageName, imageData, imageType, quantity, ...rest } = item;
         const updatedStockQuantity = item.stockQuantity - item.quantity;
-  
+
         const updatedProductData = { ...rest, stockQuantity: updatedStockQuantity };
         console.log("updated product data", updatedProductData)
-  
+
         const cartProduct = new FormData();
         cartProduct.append("imageFile", cartImage);
         cartProduct.append(
           "product",
           new Blob([JSON.stringify(updatedProductData)], { type: "application/json" })
         );
-  
+
         await axios
           .put(`http://localhost:8080/api/product/${item.id}`, cartProduct, {
             headers: {
@@ -145,7 +145,7 @@ const Cart = () => {
                   style={{ display: "flex", alignContent: "center" }}
                   key={item.id}
                 >
-                 
+
                   <div>
                     <img
                       src={item.imageUrl}

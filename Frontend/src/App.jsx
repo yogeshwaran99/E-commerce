@@ -13,16 +13,26 @@ import UpdateProduct from "./components/UpdateProduct";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AppContext } from "./Context/Context";
 
 
 function App() {
+  return (
+    <AppProvider>
+      <AppWithContext />
+    </AppProvider>
+  );
+}
+
+function AppWithContext() {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const { user } = React.useContext(AppContext);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    console.log("Selected category:", category);
   };
+
   const addToCart = (product) => {
     const existingProduct = cart.find((item) => item.id === product.id);
     if (existingProduct) {
@@ -39,28 +49,31 @@ function App() {
   };
 
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <Navbar onSelectCategory={handleCategorySelect}
-         />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home addToCart={addToCart} selectedCategory={selectedCategory}
-              />
-            }
-          />
+    <BrowserRouter>
+      <Navbar onSelectCategory={handleCategorySelect} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              addToCart={addToCart}
+              selectedCategory={selectedCategory}
+            />
+          }
+        />
+        {user?.role === "ROLE_VENDOR" && (
           <Route path="/add_product" element={<AddProduct />} />
-          <Route path="/product" element={<Product  />} />
-          <Route path="product/:id" element={<Product  />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
+        )}
+        <Route path="/product" element={<Product />} />
+        <Route path="product/:id" element={<Product />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
+        {user?.role === "ROLE_VENDOR" && (
           <Route path="/product/update/:id" element={<UpdateProduct />} />
-        </Routes>
-      </BrowserRouter>
-    </AppProvider>
+        )}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

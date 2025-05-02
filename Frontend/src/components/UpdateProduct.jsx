@@ -4,7 +4,7 @@ import axios from "axios";
 
 const UpdateProduct = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [image, setImage] = useState();
   const [updateProduct, setUpdateProduct] = useState({
@@ -33,7 +33,7 @@ const UpdateProduct = () => {
           { responseType: "blob" }
         );
         const imageFile = await convertUrlToFile(responseImage.data, response.data.imageName);
-        setImage(imageFile);     
+        setImage(imageFile);
         setUpdateProduct(response.data);
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -80,7 +80,7 @@ const UpdateProduct = () => {
 
       console.log("Product updated successfully:", response.data);
       alert("Product updated successfully!");
-      navigate("/products"); 
+      navigate("/products");
     } catch (error) {
       console.error("Error updating product:", error);
       alert("Failed to update product. Please try again.");

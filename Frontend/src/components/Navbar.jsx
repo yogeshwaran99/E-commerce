@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../Context/Context";
 
 const Navbar = ({ onSelectCategory }) => {
+  const { user } = useContext(AppContext);
   const getInitialTheme = () => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme ? storedTheme : "light-theme";
@@ -69,7 +72,7 @@ const Navbar = ({ onSelectCategory }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
-    window.location.href = "/login"; 
+    window.location.href = "/login";
   };
 
   const categories = [
@@ -87,7 +90,7 @@ const Navbar = ({ onSelectCategory }) => {
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              ECom
+              ECommerce
             </a>
             <button
               className="navbar-toggler"
@@ -110,11 +113,13 @@ const Navbar = ({ onSelectCategory }) => {
                     Home
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/add_product">
-                    Add Product
-                  </a>
-                </li>
+                {user?.role === "ROLE_VENDOR" && (
+                  <li className="nav-item">
+                    <a className="nav-link" href="/add_product">
+                      Add Product
+                    </a>
+                  </li>
+                )}
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"

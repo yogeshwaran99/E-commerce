@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import AppContext from "../Context/Context";
 import unplugged from "../assets/unplugged.png"
-
+import banner from "../assets/banner.jpg"
 const Home = ({ selectedCategory }) => {
   const { data, isError, addToCart, refreshData } = useContext(AppContext);
   const [products, setProducts] = useState([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
-  
+
   useEffect(() => {
     if (!isDataFetched) {
       refreshData();
@@ -52,17 +52,30 @@ const Home = ({ selectedCategory }) => {
         product.category?.toLowerCase() === selectedCategory.toLowerCase()
     );
   }, [products, selectedCategory]);
-  
+
 
   if (isError) {
     return (
       <h2 className="text-center" style={{ padding: "18rem" }}>
-      <img src={unplugged} alt="Error" style={{ width: '100px', height: '100px' }}/>
+        <img src={unplugged} alt="Error" style={{ width: '100px', height: '100px' }} />
       </h2>
     );
   }
   return (
     <>
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <img
+          src={banner}
+          alt="Top Banner"
+          style={{
+            width: "100%",
+            height: "auto",
+            maxHeight: "400px",
+            objectFit: "fill",
+          }}
+        />
+      </div>
+
       <div
         className="grid"
         style={{
@@ -102,12 +115,12 @@ const Home = ({ selectedCategory }) => {
                   height: "400px",
                   boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                   borderRadius: "10px",
-                  overflow: "hidden", 
+                  overflow: "hidden",
                   backgroundColor: productAvailable ? "#fff" : "#ccc",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent:'flex-start',
-                  alignItems:'stretch'
+                  justifyContent: 'flex-start',
+                  alignItems: 'stretch'
                 }}
                 key={id}
               >
@@ -120,11 +133,11 @@ const Home = ({ selectedCategory }) => {
                     alt={name}
                     style={{
                       width: "100%",
-                      height: "150px", 
-                      objectFit: "cover",  
+                      height: "150px",
+                      objectFit: "cover",
                       padding: "5px",
                       margin: "0",
-                      borderRadius: "10px 10px 10px 10px", 
+                      borderRadius: "10px 10px 10px 10px",
                     }}
                   />
                   <div
@@ -152,7 +165,7 @@ const Home = ({ selectedCategory }) => {
                       </i>
                       <p
                         className="card-category"
-                        style={{fontSize: "1rem" }}
+                        style={{ fontSize: "1rem" }}
                       >
                         {category}
                       </p>
@@ -161,15 +174,15 @@ const Home = ({ selectedCategory }) => {
                     <div className="home-cart-price">
                       <h5
                         className="card-text"
-                        style={{ fontWeight: "600", fontSize: "1.1rem",marginBottom:'5px' }}
+                        style={{ fontWeight: "600", fontSize: "1.1rem", marginBottom: '5px' }}
                       >
-                        <i class="bi bi-currency-rupee"></i>
+                        <i class="bi bi-currency-dollar"></i>
                         {price}
                       </h5>
                     </div>
                     <button
                       className="btn-hover color-9"
-                      style={{margin:'10px 25px 0px '  }}
+                      style={{ margin: '10px 25px 0px ' }}
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(product);
@@ -177,7 +190,7 @@ const Home = ({ selectedCategory }) => {
                       disabled={!productAvailable}
                     >
                       {productAvailable ? "Add to Cart" : "Out of Stock"}
-                    </button> 
+                    </button>
                   </div>
                 </Link>
               </div>

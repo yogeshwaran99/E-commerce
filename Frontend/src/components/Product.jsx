@@ -2,15 +2,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import AppContext from "../Context/Context";
-import axios from "../axios";
+import axios from "../axios";3
+
 const Product = () => {
   const { id } = useParams();
-  const { data, addToCart, removeFromCart, cart, refreshData } =
+  const { data, user, addToCart, removeFromCart, cart, refreshData } =
     useContext(AppContext);
   const [product, setProduct] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -127,6 +128,7 @@ const Product = () => {
             </h6>
           
           </div>
+          {user?.role === "ROLE_VENDOR" && (
           <div className="update-button" style={{ display: "flex", gap: "1rem" }}>
             <button
               className="btn btn-primary"
@@ -161,7 +163,8 @@ const Product = () => {
               Delete
             </button>
           </div>
-        </div>
+             )}
+        </div>        
       </div>
     </>
   );

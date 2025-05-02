@@ -27,7 +27,7 @@ function Login() {
       const token = response.data;
       if (token && token.startsWith("ey")) {
         localStorage.setItem("token", token);
-        setSuccessMsg("You're successfully logged in. Continue shopping!");
+        setSuccessMsg("You're successfully logged in. Go to Home page!");
       } else {
         setErrorMsg("Invalid credentials.");
       }
