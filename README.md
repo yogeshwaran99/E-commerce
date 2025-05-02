@@ -21,4 +21,8 @@
 
 - Spring Security(JWT)
 
-This project is a full-stack e-commerce application developed with Java and Spring Boot for the backend, PostgreSQL for the database, and React for the frontend. The application supports role-based access control (RBAC) with JWT (JSON Web Token) for secure authentication and authorization. Users can perform CRUD (Create, Read, Update, Delete) operations to manage products. The application provides functionality for adding, viewing, updating, and deleting products, with user roles such as CUSTOMER and VENDOR ensuring proper access and control over these operations. The React-based frontend communicates securely with the backend, providing a seamless user experience in managing an online store.
+This project is a full-stack e-commerce application built with Java and Spring Boot on the backend, PostgreSQL for data persistence, and React for the frontend interface. It implements robust security using JWT (JSON Web Token) and Spring Security, with full role-based access control (RBAC) enforced consistently across both the frontend and backend.
+
+Users are assigned roles such as CUSTOMER and VENDOR, which govern both the visibility of UI elements in the React frontend and access to API endpoints on the server. This dual-layered permission model ensures that users can only see and perform actions permitted by their role.
+
+The application supports full CRUD (Create, Read, Update, Delete) operations for product management. The React frontend interacts securely with the backend through protected API endpoints, delivering a smooth and secure user experience for managing an online store.
