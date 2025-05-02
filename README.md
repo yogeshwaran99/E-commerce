@@ -1,5 +1,7 @@
 # React Spring Boot Ecommerce
 
+![Preview](https://raw.githubusercontent.com/yogeshwaran99/E-commerce/main/Frontend/public/preview.png)
+
 ### Backend
 
 - Java
