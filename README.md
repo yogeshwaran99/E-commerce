@@ -1,25 +1,26 @@
-# React Spring Boot Ecommerce
+# Full-Stack E-Commerce App with React and Spring Boot
 
 ![Preview](https://raw.githubusercontent.com/yogeshwaran99/E-commerce/main/Frontend/public/preview.png)
 
-### Backend
 
+## Tech Stack
+
+### Backend
 - Java
 - Spring Boot
 
 ### Frontend
-
+- React
 - HTML
 - CSS
-- React
 
 ### Database
-
 - PostgreSQL
 
 ### Security
-
 - Spring Security(JWT)
+
+## Overview
 
 This project is a full-stack e-commerce application built with Java and Spring Boot on the backend, PostgreSQL for data persistence, and React for the frontend interface. It implements robust security using JWT (JSON Web Token) and Spring Security, with full role-based access control (RBAC) enforced consistently across both the frontend and backend.
 
