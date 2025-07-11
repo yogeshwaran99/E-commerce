@@ -1,6 +1,6 @@
 # E-Commerce App with React and Spring Boot
 
-![Preview](https://raw.githubusercontent.com/yogeshwaran99/E-commerce/main/Frontend/public/preview.png)
+![Preview](https://raw.githubusercontent.com/yogeshwaran99/ecommerce/main/Client/public/preview.png)
 
 ## Tech Stack
 
