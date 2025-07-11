@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
 const AddProduct = () => {
@@ -15,13 +15,13 @@ const AddProduct = () => {
   const [image, setImage] = useState(null);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+    const {name, value} = e.target;
+    setProduct({...product, [name]: value});
   };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    setProduct({ ...product, image: e.target.files[0] });
+    setProduct({...product, image: e.target.files[0]});
   };
 
   const submitHandler = (event) => {
@@ -38,11 +38,11 @@ const AddProduct = () => {
     formData.append("imageFile", image);
     formData.append(
       "product",
-      new Blob([JSON.stringify(product)], { type: "application/json" })
+      new Blob([JSON.stringify(product)], {type: "application/json"})
     );
 
     axios
-      .post("http://localhost:8080/api/product", formData, {
+      .post("/product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -188,7 +188,7 @@ const AddProduct = () => {
                 id="gridCheck"
                 checked={product.productAvailable}
                 onChange={(e) =>
-                  setProduct({ ...product, productAvailable: e.target.checked })
+                  setProduct({...product, productAvailable: e.target.checked})
                 }
               />
               <label className="form-check-label">Product Available</label>

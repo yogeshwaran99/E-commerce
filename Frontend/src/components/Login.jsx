@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 function Login() {
@@ -19,7 +19,7 @@ function Login() {
     setSuccessMsg("");
 
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("/api/login", {
         username,
         password,
       });
@@ -48,14 +48,14 @@ function Login() {
   };
 
   return (
-    <div style={{ height: "100vh", textAlign: "center" }}>
+    <div style={{height: "100vh", textAlign: "center"}}>
       <h1 style={h1Style}>Login</h1>
 
       <form
         onSubmit={handleLogin}
-        style={{ display: "inline-block", textAlign: "left", maxWidth: "300px" }}
+        style={{display: "inline-block", textAlign: "left", maxWidth: "300px"}}
       >
-        <div style={{ marginBottom: "1rem" }}>
+        <div style={{marginBottom: "1rem"}}>
           <label htmlFor="username" style={labelStyle}>
             Username:
           </label>
@@ -69,7 +69,7 @@ function Login() {
           />
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
+        <div style={{marginBottom: "1rem"}}>
           <label htmlFor="password" style={labelStyle}>
             Password:
           </label>
@@ -83,8 +83,8 @@ function Login() {
           />
         </div>
 
-        {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
-        {successMsg && <p style={{ color: "green" }}>{successMsg}</p>}
+        {errorMsg && <p style={{color: "red"}}>{errorMsg}</p>}
+        {successMsg && <p style={{color: "green"}}>{successMsg}</p>}
 
         <button type="submit" className="btn btn-success w-100">
           Login

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import AppContext from "../Context/Context";
 import unplugged from "../assets/unplugged.png"
 import banner from "../assets/banner.jpg"
-const Home = ({ selectedCategory }) => {
-  const { data, isError, addToCart, refreshData } = useContext(AppContext);
+const Home = ({selectedCategory}) => {
+  const {data, isError, addToCart, refreshData} = useContext(AppContext);
   const [products, setProducts] = useState([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
 
@@ -23,18 +23,18 @@ const Home = ({ selectedCategory }) => {
           data.map(async (product) => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/product/${product.id}/image`,
-                { responseType: "blob" }
+                `/api/product/${product.id}/image`,
+                {responseType: "blob"}
               );
               const imageUrl = URL.createObjectURL(response.data);
-              return { ...product, imageUrl };
+              return {...product, imageUrl};
             } catch (error) {
               console.error(
                 "Error fetching image for product ID:",
                 product.id,
                 error
               );
-              return { ...product, imageUrl: "placeholder-image-url" };
+              return {...product, imageUrl: "placeholder-image-url"};
             }
           })
         );
@@ -56,14 +56,14 @@ const Home = ({ selectedCategory }) => {
 
   if (isError) {
     return (
-      <h2 className="text-center" style={{ padding: "18rem" }}>
-        <img src={unplugged} alt="Error" style={{ width: '100px', height: '100px' }} />
+      <h2 className="text-center" style={{padding: "18rem"}}>
+        <img src={unplugged} alt="Error" style={{width: '100px', height: '100px'}} />
       </h2>
     );
   }
   return (
     <>
-      <div style={{ width: "100%", overflow: "hidden" }}>
+      <div style={{width: "100%", overflow: "hidden"}}>
         <img
           src={banner}
           alt="Top Banner"
@@ -99,7 +99,7 @@ const Home = ({ selectedCategory }) => {
           </h2>
         ) : (
           filteredProducts.map((product) => {
-            const { id, brand, name, price, category, productAvailable, imageUrl } =
+            const {id, brand, name, price, category, productAvailable, imageUrl} =
               product;
             const cardStyle = {
               width: "18rem",
@@ -126,7 +126,7 @@ const Home = ({ selectedCategory }) => {
               >
                 <Link
                   to={`/product/${id}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                  style={{textDecoration: "none", color: "inherit"}}
                 >
                   <img
                     src={imageUrl}
@@ -153,28 +153,28 @@ const Home = ({ selectedCategory }) => {
                     <div>
                       <h5
                         className="card-title"
-                        style={{ margin: "0 0 10px 0", fontSize: "1.2rem" }}
+                        style={{margin: "0 0 10px 0", fontSize: "1.2rem"}}
                       >
                         {name.toUpperCase()}
                       </h5>
                       <i
                         className="card-brand"
-                        style={{ fontStyle: "italic", fontSize: "0.8rem" }}
+                        style={{fontStyle: "italic", fontSize: "0.8rem"}}
                       >
                         {"~ " + brand}
                       </i>
                       <p
                         className="card-category"
-                        style={{ fontSize: "1rem" }}
+                        style={{fontSize: "1rem"}}
                       >
                         {category}
                       </p>
                     </div>
-                    <hr className="hr-line" style={{ margin: "10px 0" }} />
+                    <hr className="hr-line" style={{margin: "10px 0"}} />
                     <div className="home-cart-price">
                       <h5
                         className="card-text"
-                        style={{ fontWeight: "600", fontSize: "1.1rem", marginBottom: '5px' }}
+                        style={{fontWeight: "600", fontSize: "1.1rem", marginBottom: '5px'}}
                       >
                         <i class="bi bi-currency-dollar"></i>
                         {price}
@@ -182,7 +182,7 @@ const Home = ({ selectedCategory }) => {
                     </div>
                     <button
                       className="btn-hover color-9"
-                      style={{ margin: '10px 25px 0px ' }}
+                      style={{margin: '10px 25px 0px '}}
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(product);

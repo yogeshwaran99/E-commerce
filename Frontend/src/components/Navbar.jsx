@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { useContext } from "react";
-import { AppContext } from "../Context/Context";
+import {useContext} from "react";
+import {AppContext} from "../Context/Context";
 
-const Navbar = ({ onSelectCategory }) => {
-  const { user } = useContext(AppContext);
+const Navbar = ({onSelectCategory}) => {
+  const {user} = useContext(AppContext);
   const getInitialTheme = () => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme ? storedTheme : "light-theme";
@@ -27,7 +27,7 @@ const Navbar = ({ onSelectCategory }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/products");
+      const response = await axios.get("/products");
       setSearchResults(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -40,7 +40,7 @@ const Navbar = ({ onSelectCategory }) => {
       setShowSearchResults(true);
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/product/search?keyword=${value}`
+          `/product/search?keyword=${value}`
         );
         setSearchResults(response.data);
         setNoResults(response.data.length === 0);

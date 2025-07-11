@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("CUSTOMER");
-  const [signupSuccess, setSignupSuccess] = useState(false); 
+  const [signupSuccess, setSignupSuccess] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/register", {
+      const response = await axios.post("/api/register", {
         username,
         password,
         role,
@@ -25,7 +25,7 @@ function Signup() {
 
       console.log("User registered:", response.data);
       setSignupSuccess(true);
-      setUsername(""); 
+      setUsername("");
       setPassword("");
     } catch (error) {
       console.error("Signup error:", error);
@@ -44,12 +44,12 @@ function Signup() {
   };
 
   return (
-    <div style={{ textAlign: "center", height: "100vh" }}>
+    <div style={{textAlign: "center", height: "100vh"}}>
       <h1 style={h1Style}>Signup</h1>
-      <br/>
+      <br />
       <div>
         <form onSubmit={handleSignup}>
-          <div style={{ marginBottom: "1rem" }}>
+          <div style={{marginBottom: "1rem"}}>
             <label htmlFor="username" style={labelStyle}>Username</label>
             <input
               id="username"
@@ -59,7 +59,7 @@ function Signup() {
               required
             />
           </div>
-          <div style={{ marginBottom: "1rem" }}>
+          <div style={{marginBottom: "1rem"}}>
             <label htmlFor="pass" style={labelStyle}>Password</label>
             <input
               id="pass"
@@ -70,9 +70,9 @@ function Signup() {
             />
           </div>
 
-          <div style={{ marginBottom: "1rem" }}>
+          <div style={{marginBottom: "1rem"}}>
             <span style={labelStyle}>Select Role: </span>
-            <label style={{ marginLeft: "1rem", ...labelStyle }}>
+            <label style={{marginLeft: "1rem", ...labelStyle}}>
               <input
                 type="radio"
                 name="role"
@@ -82,7 +82,7 @@ function Signup() {
               />
               Customer
             </label>
-            <label style={{ marginLeft: "1rem", ...labelStyle }}>
+            <label style={{marginLeft: "1rem", ...labelStyle}}>
               <input
                 type="radio"
                 name="role"
@@ -99,7 +99,7 @@ function Signup() {
           </button>
         </form>
         {signupSuccess && (
-          <p style={{ marginTop: "1rem", color: "green" }}>
+          <p style={{marginTop: "1rem", color: "green"}}>
             Signup successful! <a href="/login">Login now</a> to continue.
           </p>
         )}

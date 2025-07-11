@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 
 const UpdateProduct = () => {
-  const { id } = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [image, setImage] = useState();
@@ -23,14 +23,14 @@ const UpdateProduct = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/product/${id}`
+          `/api/product/${id}`
         );
 
         setProduct(response.data);
 
         const responseImage = await axios.get(
-          `http://localhost:8080/api/product/${id}/image`,
-          { responseType: "blob" }
+          `/api/product/${id}/image`,
+          {responseType: "blob"}
         );
         const imageFile = await convertUrlToFile(responseImage.data, response.data.imageName);
         setImage(imageFile);
@@ -44,7 +44,7 @@ const UpdateProduct = () => {
   }, [id]);
 
   const convertUrlToFile = async (blobData, fileName) => {
-    const file = new File([blobData], fileName, { type: blobData.type });
+    const file = new File([blobData], fileName, {type: blobData.type});
     return file;
   };
 
@@ -62,13 +62,13 @@ const UpdateProduct = () => {
     updatedProduct.append("imageFile", image);
     updatedProduct.append(
       "product",
-      new Blob([JSON.stringify(updateProduct)], { type: "application/json" })
+      new Blob([JSON.stringify(updateProduct)], {type: "application/json"})
     );
 
     try {
 
       const response = await axios.put(
-        `http://localhost:8080/api/product/${id}`,
+        `/api/product/${id}`,
         updatedProduct,
         {
           headers: {
@@ -89,7 +89,7 @@ const UpdateProduct = () => {
 
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setUpdateProduct({
       ...updateProduct,
       [name]: value,
@@ -103,7 +103,7 @@ const UpdateProduct = () => {
 
   return (
     <div className="update-product-container">
-      <div className="center-container" style={{ marginTop: "10rem" }}>
+      <div className="center-container" style={{marginTop: "10rem"}}>
         <h1>Update Product</h1>
         <form className="row g-3 pt-1" onSubmit={handleSubmit}>
           <div className="col-md-6">
@@ -229,7 +229,7 @@ const UpdateProduct = () => {
                 id="gridCheck"
                 checked={updateProduct.productAvailable}
                 onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, productAvailable: e.target.checked })
+                  setUpdateProduct({...updateProduct, productAvailable: e.target.checked})
                 }
               />
               Product Available

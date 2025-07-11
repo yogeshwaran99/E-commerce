@@ -1,7 +1,6 @@
 package com.demo.ecom.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -43,11 +42,11 @@ public class SecurityConfig {
 
 		http.csrf(customizer -> customizer.disable())
 		.authorizeHttpRequests(request -> request			    
-			    .requestMatchers("/register", "/login","/api/products", "/api/product/search", "/api/product/*", "/api/product/*/image")
+			    .requestMatchers("/api/register", "/api/login","/api/products", "/api/product/**")
 			     .permitAll()
 			    .requestMatchers(HttpMethod.POST, "/api/product").hasRole("VENDOR")
-			    .requestMatchers(HttpMethod.PUT, "/api/product/*").hasRole("VENDOR")
-			    .requestMatchers(HttpMethod.DELETE, "/api/product/*").hasRole("VENDOR")
+			    .requestMatchers(HttpMethod.PUT, "/api/product/**").hasRole("VENDOR")
+			    .requestMatchers(HttpMethod.DELETE, "/api/product/**").hasRole("VENDOR")
 			    .anyRequest().authenticated()
 			)
 

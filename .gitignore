@@ -1,1 +1,80 @@
-/target/
+# Global
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+
+# Node.js / Frontend
+node_modules/
+dist/
+.vite/
+.env
+.env.*.local
+coverage/
+build/
+
+# VS Code
+.vscode/
+
+
+# Java / Spring Boot
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+target/
+out/
+logs/
+
+# IntelliJ / Eclipse
+.idea/
+*.iws
+*.ipr
+*.iml
+.project
+.classpath
+.settings/
+*.log
+
+# Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+
+
+# OS / Editor junk
+*.bak
+*~
+*.orig
+
+
+# Linux-specific
+*~
+.cache/
+*.pid
+*.sock
+*.gz
+*.tar
+*.zip
+*.out
+
+# Vim swap/backup files
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.orig
+*~
+.vim/
+.vimrc
+.viminfo
