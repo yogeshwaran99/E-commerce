@@ -42,7 +42,7 @@ const AddProduct = () => {
     );
 
     axios
-      .post("/product", formData, {
+      .post("/api/product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
