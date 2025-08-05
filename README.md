@@ -18,24 +18,13 @@ To allow the React frontend to communicate with the Spring Boot backend without 
 
 ---
 
-
 ## Tech Stack
 
-### Backend
-- Java
-- Spring Boot
+| Backend       | Frontend       | Database    | DevOps                  |
+|---------------|----------------|-------------|-------------------------|
+| Java          | React          | PostgreSQL  | Nginx                   |
+| Spring Boot   | HTML, CSS      |             | Docker & Docker Compose |
 
-### Frontend
-- React
-- HTML
-- CSS
-
-### Database
-- PostgreSQL
-
-### DevOps
-- Nginx
-- Docker & Docker Compose
 
 ---
 
@@ -65,7 +54,7 @@ ecommerce/
 ```
 
 
-## 🚀 How to Run the Application
+## How to Run the Application
 
 You can run this app locally or with Docker.
 
