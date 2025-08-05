@@ -162,7 +162,7 @@ http {
     }
 }
 ```
-Make sure NGINX is restarted after saving:
+> Make sure NGINX is restarted after saving:
 ```bash
 sudo systemctl restart nginx
 ```
