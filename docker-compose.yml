@@ -10,7 +10,12 @@ services:
 
   server:
     build: ./Server
-    env_file: ./Server/.env
+    container_name: ecommerce_server
+    environment:
+      SPRING_APPLICATION_NAME: SpringEcom
+      DB_URL: jdbc:postgresql://db:5432/mydb
+      DB_USER: postgres
+      DB_PASS: 12345
     ports:
       - "8080:8080"
     depends_on:
@@ -20,6 +25,7 @@ services:
 
   nginx:
     image: nginx:alpine
+    container_name: ecommerce_nginx
     volumes:
       - ./Nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
@@ -32,15 +38,22 @@ services:
 
   db:
     image: postgres:15
+    container_name: ecommerce_db
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345
     ports:
       - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  db_data:
+
