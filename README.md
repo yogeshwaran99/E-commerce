@@ -111,9 +111,9 @@ npm run dev
 http://localhost:5173
 ```
 
-## Local NGINX Reverse Proxy (Optional)
+#### Local NGINX Reverse Proxy (Optional)
 
-If you want to run the app at `http://localhost` using a reverse proxy (instead of separate ports), use the following NGINX config:
+> If you want to run the app at `http://localhost` using a reverse proxy (instead of separate ports), use the following NGINX config:
 
 ```nginx
 # /etc/nginx/nginx.conf
