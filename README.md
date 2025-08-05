@@ -81,6 +81,7 @@ You can run this app locally or with Docker.
 - Maven  
 - Node.js + npm  
 - PostgreSQL
+- Nginx (Optional)
 
 #### Steps
 
