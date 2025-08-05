@@ -73,6 +73,8 @@ You can run this app locally or with Docker.
 
 ### Method 1: Run Locally (Maven + Node)
 
+>    Useful for local development and debugging.
+
 #### Prerequisites
 
 - Java 21  
@@ -166,7 +168,7 @@ sudo systemctl restart nginx
 
 ### Method 2: Run with Docker Compose
 
-    Ideal for full-stack deployment with NGINX reverse proxy.
+>    Ideal for full-stack deployment with NGINX reverse proxy.
 
 #### Prerequisites
   - Docker
