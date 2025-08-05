@@ -78,6 +78,7 @@ You can run this app locally or with Docker.
 - Java 21  
 - Maven  
 - Node.js + npm  
+- PostgreSQL
 
 #### Steps
 
