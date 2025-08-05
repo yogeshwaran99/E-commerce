@@ -1,6 +1,6 @@
 # E-Commerce App with React and Spring Boot
 
-A complete e-commerce application with user roles, secure authentication, and product management features.
+E-commerce application with user roles, secure authentication, and product management features.
 
 ## Preview
 ![Preview](https://raw.githubusercontent.com/yogeshwaran99/ecommerce/main/Client/public/preview.png)
